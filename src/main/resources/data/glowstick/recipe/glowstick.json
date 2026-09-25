@@ -1,0 +1,11 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		"glowstick:glowball",
+		"minecraft:stick"
+	],
+	"result": {
+		"count": 1,
+		"id": "glowstick:glowstick"
+	}
+}
