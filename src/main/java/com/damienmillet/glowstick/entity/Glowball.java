@@ -6,6 +6,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.throwableitemprojectile.ThrowableItemProjectile;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LightBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -119,9 +121,11 @@ public class Glowball extends ThrowableItemProjectile {
 	private void placeLightAndDiscard() {
 		if (this.level() instanceof ServerLevel serverLevel) {
 			BlockPos pos = BlockPos.containing(this.getX(), this.getY(), this.getZ());
-			BlockState lightState = Blocks.LIGHT.defaultBlockState();
 			BlockPos target = findLightPosition(serverLevel, pos);
 			if (target != null) {
+				BlockState lightState = Blocks.LIGHT.defaultBlockState()
+					.setValue(LightBlock.LEVEL, LightBlock.MAX_LEVEL)
+					.setValue(LightBlock.WATERLOGGED, serverLevel.getBlockState(target).getFluidState().is(FluidTags.WATER));
 				serverLevel.setBlockAndUpdate(target, lightState);
 			} else {
 				Block.popResource(serverLevel, pos, this.getItem().copy());
@@ -143,6 +147,7 @@ public class Glowball extends ThrowableItemProjectile {
 
 	private static boolean canHostLight(ServerLevel level, BlockPos pos) {
 		BlockState state = level.getBlockState(pos);
-		return state.isAir() || state.canBeReplaced();
+		return state.isAir() || state.canBeReplaced() || state.is(Blocks.LIGHT)
+			|| state.getFluidState().is(FluidTags.WATER);
 	}
 }
