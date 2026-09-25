@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [
+		"   ",
+		"GTG",
+		"   "
+	],
+	"key": {
+		"G": "minecraft:glass",
+		"T": "minecraft:torch"
+	},
+	"result": {
+		"count": 1,
+		"id": "glowstick:glowstick"
+	}
+}
