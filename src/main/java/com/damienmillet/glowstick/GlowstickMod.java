@@ -45,13 +45,13 @@ public class GlowstickMod implements ModInitializer {
 	public static final Item GLOWBALL_ITEM = Registry.register(
 		BuiltInRegistries.ITEM,
 		Identifier.fromNamespaceAndPath(MOD_ID, "glowball"),
-		new GlowballItem(new Item.Properties().stacksTo(16))
+		new GlowballItem(new Item.Properties().stacksTo(16).setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "glowball"))))
 	);
 
 	public static final Item GLOWSTICK = Registry.register(
 		BuiltInRegistries.ITEM,
 		Identifier.fromNamespaceAndPath(MOD_ID, "glowstick"),
-		new GlowstickItem(new Item.Properties().stacksTo(1))
+		new GlowstickItem(new Item.Properties().stacksTo(1).setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "glowstick"))))
 	);
 
 	@Override
