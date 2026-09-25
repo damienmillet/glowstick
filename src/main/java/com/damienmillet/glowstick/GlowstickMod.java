@@ -1,6 +1,7 @@
 package com.damienmillet.glowstick;
 
 import com.damienmillet.glowstick.entity.Glowball;
+import com.damienmillet.glowstick.entity.Glowstick;
 import com.damienmillet.glowstick.item.GlowballItem;
 import com.damienmillet.glowstick.item.GlowstickItem;
 import net.fabricmc.api.ModInitializer;
@@ -29,6 +30,16 @@ public class GlowstickMod implements ModInitializer {
 			.clientTrackingRange(4)
 			.updateInterval(10)
 			.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "glowball")))
+	);
+
+	public static final EntityType<Glowstick> GLOWSTICK_ENTITY = Registry.register(
+		BuiltInRegistries.ENTITY_TYPE,
+		Identifier.fromNamespaceAndPath(MOD_ID, "glowstick"),
+		EntityType.Builder.<Glowstick>of(Glowstick::new, MobCategory.MISC)
+			.sized(0.5F, 0.5F)
+			.clientTrackingRange(4)
+			.updateInterval(20)
+			.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "glowstick")))
 	);
 
 	public static final Item GLOWBALL_ITEM = Registry.register(
