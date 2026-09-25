@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "glowstick",
+	"version": "${version}",
+	"name": "Glowstick",
+	"description": "Adds throwable glowballs that light up even underwater, and glowsticks!",
+	"authors": [
+		"damienmillet"
+	],
+	"contact": {
+		"sources": "https://github.com/damienmillet/glowstick"
+	},
+	"license": "MIT",
+	"icon": "assets/glowstick/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.damienmillet.glowstick.GlowstickMod"
+		],
+		"client": [
+			"com.damienmillet.glowstick.client.GlowstickModClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
